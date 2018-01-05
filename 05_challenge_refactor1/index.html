@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>React tutorial</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.2/browser.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- JSX Style Coding for React - Challenge -->
+    <script type="text/babel">
+        var CountComponent = React.createClass({
+            getInitialState: function() {
+                return {
+                    count: 0
+                }
+            },
+            incrementCount: function(value) {
+                //console.log(this);
+                this.setState({
+                    count: this.state.count + value
+                })
+            },
+            resetCount: function() {
+                this.setState({
+                    count: this.state.count = 0
+                })
+            },
+            render: function() {
+               return (
+                   <div className="container">
+                       <h1>Count: {this.state.count}</h1>
+                       <button className="btn blue-btn" onClick={this.incrementCount.bind(this, 1)}>Add 1</button>
+                       <button className="btn green-btn" onClick={this.incrementCount.bind(this, 5)}>Add 5</button>
+                       <button className="btn purple-btn" onClick={this.incrementCount.bind(this, 10)}>Add 10</button>
+                       <div className="row">
+                           <button className="btn reset-btn" onClick={this.resetCount}>Reset Count</button>
+                       </div>
+                   </div>
+               )
+            } 
+        });
+
+        ReactDOM.render(
+            <CountComponent />,
+            document.getElementById('app')
+        );
+    </script>
+</body>
+</html>
