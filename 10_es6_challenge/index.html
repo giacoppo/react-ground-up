@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>React tutorial</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.2/browser.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- JSX Style Coding for React - Challenge rework to ES6 -->
+    <script type="text/babel">
+        class CountComponent extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { count: 0 }
+                this.incrementCount = this.incrementCount.bind(this);
+                this.resetCount = this.resetCount.bind(this);
+            }
+            incrementCount(value) {
+                //console.log(this);
+                this.setState({
+                    count: this.state.count + value
+                })
+            }
+            resetCount() {
+                this.setState({
+                    count: this.state.count = 0
+                })
+            }
+            render() {
+               return (
+                   <div className="container">
+                       <h1>Count: {this.state.count}</h1>
+                       <Button style="btn blue-btn" text={`${this.props.text} ${this.props.valueOne}`} value={this.props.valueOne} clickHandler={() => this.incrementCount(this.props.valueOne)} />
+                       <Button style="btn green-btn" text={`${this.props.text} ${this.props.valueTwo}`} value={this.props.valueTwo} clickHandler={() => this.incrementCount(this.props.valueTwo)} />
+                       <Button style="btn purple-btn" text={`${this.props.text} ${this.props.valueThree}`} value={this.props.valueThree} clickHandler={() => this.incrementCount(this.props.valueThree)} />
+                       
+                       <div className="row">
+                           <Button style="btn reset-btn" text={`${this.props.textReset}`} value={this.props.valueDefault} clickHandler={() => this.resetCount(this.props.valueDefault)} />
+                       </div>
+                   </div>
+               )
+            } 
+        };
+
+        CountComponent.defaultProps = {
+            valueOne: 1,
+            valueTwo: 5,
+            valueThree: 10,
+            valueDefault: 0,
+            text: 'Add',
+            textReset: 'Reset Count'
+        }
+
+        const Button = (props) => {
+            return (
+                <button className={props.style} value={props.value} onClick={props.clickHandler}>{props.text}</button>
+            )
+        };
+
+        Button.propTypes = {
+            text: React.PropTypes.string,
+            style: React.PropTypes.string,
+            value: React.PropTypes.number,
+            clickHandler: React.PropTypes.func.isRequired
+        }
+
+        ReactDOM.render(
+            <CountComponent valueOne={100} valueTwo={1000} valueThree={10000} />,
+            document.getElementById('app')
+        );
+    </script>
+</body>
+</html>
