@@ -12,7 +12,65 @@
     <div id="app"></div>
     <!-- JSX Style Coding for React - Higher Order Components -->
     <script type="text/babel">
+        // Higher Order Component
+        let BaseCount = (BasicComponent) => class extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    count: 0,
+                    text: "Hello"
+                }
+                this.incrementCount = this.incrementCount.bind(this);
+            }
+            incrementCount() {
+                //console.log("I have been clicked");
+                this.setState({
+                    count: this.state.count + 1
+                })
+            }
+            render() {
+                // ES6 Spread Operator (...)
+                return (
+                    <div className="container">
+                        <BasicComponent {...this.state} increment={this.incrementCount} />
+                    </div>
+                )
+            }
+        }
         
+        // Stateless Functional Component
+        const Button = (props) => {
+            console.log(props)
+            return (
+                <button className="btn blue-btn" onClick={props.increment}>Count: {props.count}</button>
+            )
+        }
+        
+        const Label = (props) => {
+            return (
+                <label onMouseMove={props.increment}>Count: {props.count}</label>
+            )
+        }
+        
+        let ExtendedButton = BaseCount(Button);
+        let ExtendedLabel = BaseCount(Label);
+
+        const Container = () => {
+            return(
+                <div>
+                    <ExtendedButton />
+                    <ExtendedLabel />
+                </div>
+            )
+        }
+        
+        ReactDOM.render(
+            //<ExtendedButton />,
+            //<ExtendedLabel />,
+            <Container />,
+            document.getElementById('app')
+        );
+
     </script>
 </body>
 </html>
