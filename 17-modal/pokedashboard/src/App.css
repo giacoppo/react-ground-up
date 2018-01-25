@@ -9,19 +9,37 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
   padding: 20px;
   color: white;
+  margin-bottom: 24px;
 }
 
 .App-intro {
   font-size: large;
 }
 
+.space {
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+.PokeList-item {
+    text-transform: capitalize;
+}
+
 .PokeList-item {
   text-transform: capitalize;;
 }
+
+.pagination {
+    padding: 0 18px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+button.PokeList-item.list-group-item {
+    text-align: center;
 }

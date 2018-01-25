@@ -19,6 +19,10 @@
 }
 
 .PokeList-item {
+    text-transform: capitalize;
+}
+
+.PokeList-item {
   text-transform: capitalize;;
 }
 @keyframes App-logo-spin {
