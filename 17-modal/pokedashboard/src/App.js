@@ -11,14 +11,15 @@ class App extends Component {
     super(props);
 
     this.state = {
-      pokemon: [],
-      activePage: 1,
-      limit: 50,
-      offset: 0,
-      totalPages: 0,
-      count: 0,
-      loaded: false,
-      showModal: false
+        pokemon: [],
+        activePage: 1,
+        limit: 50,
+        offset: 0,
+        totalPages: 0,
+        count: 0,
+        loaded: false,
+        showModal: false,
+        selectedPokemon: null
     };
 
     this.loadPokemon = this.loadPokemon.bind(this);
@@ -70,10 +71,20 @@ class App extends Component {
     }
 
     handleModalOpen(pokemon) {
-        console.log(pokemon);
-        this.setState({
-            showModal: true
-        });
+        if(pokemon.url !== undefined) {
+            fetch(`${pokemon.url}`)
+                .then(response => {
+                    return response.json()
+                }).then(json => {
+                    console.log(json);
+                    this.setState({
+                        selectedPokemon: json,
+                        showModal: true
+                    })
+                }).catch(ex => {
+                    console.log('parsing failed', ex);
+                })
+        }
     }
     
     handleModalClose() {

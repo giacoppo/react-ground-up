@@ -43,3 +43,17 @@
 button.PokeList-item.list-group-item {
     text-align: center;
 }
+
+.Aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Aligner-items {
+    max-width: 50%;
+}
+
+#contained-modal-title {
+    text-transform: capitalize;
+}
